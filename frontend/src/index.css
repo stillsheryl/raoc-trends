@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* Design tokens — exposed as Tailwind color/font utilities (bg-elev, text-dim, …) */
+@theme {
+  --color-bg: #0b0f17;
+  --color-elev: #131a26;
+  --color-elev2: #1b2433;
+  --color-line: #243044;
+  --color-line2: #324159;
+  --color-ink: #e6edf6;
+  --color-dim: #93a1b5;
+  --color-faint: #8593a8;
+  --color-accent: #6ea8fe;
+  --color-accent2: #b794f6;
+  --color-rag: #4ade80;
+  --color-plain: #fbbf24;
+  --color-danger: #f87171;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  html,
+  body,
+  #root {
+    margin: 0;
+    min-height: 100vh;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(110, 168, 254, 0.08), transparent 60%),
+      radial-gradient(1000px 500px at 100% 0%, rgba(183, 148, 246, 0.07), transparent 55%),
+      var(--color-bg);
+  }
+  h1, h2, h3, h4 {
+    margin: 0;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+  button {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply cursor-pointer rounded-[10px] border border-line bg-elev2 px-3.5 py-2 text-sm text-ink
+      transition-colors hover:border-line2 hover:bg-[#232f42] active:translate-y-px
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply border-blue-600 bg-blue-600 font-semibold text-white hover:bg-blue-500;
+  }
+}
+
+/* Rendered markdown (react-markdown output in the A/B panel) */
+.markdown { font-size: 14px; line-height: 1.6; color: var(--color-ink); }
+.markdown h1, .markdown h2, .markdown h3 { font-size: 15px; margin: 14px 0 6px; }
+.markdown ul, .markdown ol { padding-left: 20px; margin: 8px 0; }
+.markdown li { margin: 4px 0; }
+.markdown p { margin: 8px 0; }
+.markdown strong { color: var(--color-ink); }
+
+/* recharts theming that can't be reached with utility classes */
+.recharts-cartesian-axis-tick-value { fill: var(--color-faint); font-size: 11px; }
+.recharts-default-tooltip {
+  background: var(--color-elev2) !important;
+  border: 1px solid var(--color-line) !important;
+  border-radius: 10px !important;
+}
+
+/* Keyframe-based effects (not expressible as utilities) */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+.pulse-ring { animation: pulse-ring 1.3s ease-out infinite; }
+
+@keyframes indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+.indeterminate-bar { animation: indeterminate 1.25s ease-in-out infinite; }
+
+@keyframes modal-fade { from { opacity: 0; } to { opacity: 1; } }
+.modal-fade { animation: modal-fade 0.12s ease; }
+@keyframes modal-pop {
+  from { transform: translateY(8px) scale(0.98); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.modal-pop { animation: modal-pop 0.14s ease; }

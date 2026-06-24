@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.python-version
+
+# Env / secrets
+.env
+
+# Caches
+.ruff_cache/
+.pytest_cache/
+
+# Model cache (sentence-transformers / huggingface may also use ~/.cache)
+.cache/
+
+# Cron / ingestion logs
+logs/
