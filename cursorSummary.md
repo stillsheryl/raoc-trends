@@ -1,4 +1,4 @@
-# RAOC Community Voices — Build Summary
+# Build summary of the work done in Cursor (work performed by Claude Opus 4.8)
 
 A summary of the work done to build the **Community Voices** app for
 **r/RandomActsofCards**: a RAG pipeline that predicts what the community will

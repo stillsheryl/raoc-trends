@@ -13,7 +13,7 @@ trend charts, a 2D embedding scatter, and retrieval stats.
 
 ## Prerequisites
 
-- Node.js 18+ (tested on 22)
+- Node.js `^20.19.0 || >=22.12.0` (required by Vite 8; enforced via `engines` in `package.json`)
 - The backend running at `http://localhost:8000` (see `../backend/README.md`)
 
 ## Setup
@@ -46,3 +46,4 @@ npm run preview    # serve the production build
 - **Retrieval Stats** — posts most frequently pulled into RAG context.
 
 > CORS: the backend allows `http://localhost:5173` by default (`CORS_ORIGINS` in `../backend/.env`).
+
