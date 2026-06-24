@@ -15,8 +15,8 @@ This project is split into two apps under one repo:
 
 | Folder                            | Stack                                             | What it does                                                                                |
 | --------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `[backend/](backend/README.md)`   | Python · FastAPI · PostgreSQL + pgvector · Gemini | Ingestion pipeline, local embeddings, RAG retrieval + generation, and the HTTP API.         |
-| `[frontend/](frontend/README.md)` | React · TypeScript · Vite · Tailwind              | Dashboard that visualizes the A/B comparison, trends, embedding space, and retrieval stats. |
+| [backend/](backend/README.md)   | Python · FastAPI · PostgreSQL + pgvector · Gemini | Ingestion pipeline, local embeddings, RAG retrieval + generation, and the HTTP API.         |
+| [frontend/](frontend/README.md) | React · TypeScript · Vite · Tailwind              | Dashboard that visualizes the A/B comparison, trends, embedding space, and retrieval stats. |
 
 
 Each folder has its own README with detailed setup and run instructions.
@@ -30,16 +30,16 @@ together:
 
 | File                                     | Tool / contents                           |
 | ---------------------------------------- | ----------------------------------------- |
-| `[plan.md](plan.md)`                     | The plan of record the build follows.     |
-| `[chatGptSummary.md](chatGptSummary.md)` | Planning discussion with ChatGPT.         |
-| `[claudeSummary.md](claudeSummary.md)`   | Planning conversation log with Claude.    |
-| `[cursorSummary.md](cursorSummary.md)`   | Build summary of the work done in Cursor. |
+| [`plan.md`](plan.md)                     | The plan of record the build follows.     |
+| [chatGptSummary.md](chatGptSummary.md) | Planning discussion with ChatGPT.         |
+| [claudeSummary.md](claudeSummary.md)   | Planning conversation log with Claude.    |
+| [cursorSummary.md](cursorSummary.md)   | Build summary of the work done in Cursor. |
 
 
 ## Getting started
 
-Full instructions live in `[backend/README.md](backend/README.md)` and
-`[frontend/README.md](frontend/README.md)`. At a high level:
+Full instructions live in [backend/README.md](backend/README.md) and
+[frontend/README.md](frontend/README.md). At a high level:
 
 1. **Start the backend** — Postgres via Docker (`docker compose up -d`), then the
   API (`uv run uvicorn app.main:app --reload --port 8000`). Requires a

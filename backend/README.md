@@ -113,7 +113,7 @@ Ready-to-use scripts live in `scripts/`:
 
 | Script                                    | Purpose                                                                                                        |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `scripts/ingest_cron.sh [day|week|month]` | Runs an idempotent ingest (default `week`); cron-safe (resolves paths, finds `uv`, logs to `logs/ingest.log`). |
+| `scripts/ingest_cron.sh [day\|week\|month]` | Runs an idempotent ingest (default `week`); cron-safe (resolves paths, finds `uv`, logs to `logs/ingest.log`). |
 | `scripts/install_cron.sh`                 | Installs/updates the weekly cron entry (idempotent — no duplicates).                                           |
 | `scripts/uninstall_cron.sh`               | Removes the managed cron entry.                                                                                |
 
