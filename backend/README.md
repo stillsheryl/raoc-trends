@@ -68,7 +68,9 @@ automatically on first ingest or API start — no manual migration needed.
 
 ## 4. Run the ingestion pipeline
 
-Note that this will take 30-60 seconds to download to your local machine. Start small and scale up:
+Note that this will take 30-60 seconds to download the ML models to your local machine. You can also skip this step and use the frontend UI to fetch data instead.
+
+Start small and scale up:
 
 ```bash
 uv run python -m app.ingest --window day     # confirm ingestion works
@@ -80,7 +82,29 @@ The pipeline is **idempotent** — posts are upserted on `reddit_id` (example UR
 never create duplicates, and embeddings are only generated for new posts.
 Use `--limit N` to cap the fetch while testing.
 
-### Weekly cron (keep the store fresh)
+## 5. Start the API
+
+```bash
+uv run uvicorn app.main:app --reload --port 8000
+```
+
+- Health check: [http://localhost:8000/health](http://localhost:8000/health)
+- Interactive API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+
+### Endpoints
+
+
+| Method | Path                  | Description                                  |
+| ------ | --------------------- | -------------------------------------------- |
+| GET    | `/ab`                 | Plain-LLM vs RAG-grounded A/B comparison     |
+| GET    | `/trends`             | Post volume over time + top title keywords   |
+| GET    | `/embeddings/scatter` | 2D PCA projection colored by k-means cluster |
+| GET    | `/retrieval-stats`    | Posts with the highest `retrieval_count`     |
+| POST   | `/ingest/run`         | Trigger ingestion (`{"window": "day"}`)      |
+| GET    | `/health`             | Liveness check                               |
+
+
+## 6. Optional: Weekly cron (keep the store fresh)
 
 **Note**: this is not required for setup, but you can use this if you're interested in setting up a script that runs weekly to fetch new data.
 
@@ -114,28 +138,6 @@ You can also run the ingest wrapper manually any time:
 
 Verify with `crontab -l`; logs are written to `backend/logs/ingest.log`. Remove
 the job with `./scripts/uninstall_cron.sh`.
-
-## 5. Start the API
-
-```bash
-uv run uvicorn app.main:app --reload --port 8000
-```
-
-- Health check: [http://localhost:8000/health](http://localhost:8000/health)
-- Interactive API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
-
-### Endpoints
-
-
-| Method | Path                  | Description                                  |
-| ------ | --------------------- | -------------------------------------------- |
-| GET    | `/ab`                 | Plain-LLM vs RAG-grounded A/B comparison     |
-| GET    | `/trends`             | Post volume over time + top title keywords   |
-| GET    | `/embeddings/scatter` | 2D PCA projection colored by k-means cluster |
-| GET    | `/retrieval-stats`    | Posts with the highest `retrieval_count`     |
-| POST   | `/ingest/run`         | Trigger ingestion (`{"window": "day"}`)      |
-| GET    | `/health`             | Liveness check                               |
-
 
 ## Project layout
 
